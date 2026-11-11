@@ -999,3 +999,133 @@ button { font: inherit; }
         height: 58px;
     }
 }
+
+/* ====================================================================
+   AUTOTRIX FLOATING CONTACT BUTTONS — ONLY ADDITIONAL FEATURE STYLES
+   ==================================================================== */
+.atx-floating-contacts {
+  --atx-float-orange: #d94618;
+  --atx-float-black: #101820;
+  --atx-float-whatsapp: #168e4b;
+}
+.atx-floating-contacts .atx-contact-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: width .25s ease, transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.atx-floating-contacts .atx-contact-action svg {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.atx-floating-contacts .atx-float-call { background: var(--atx-float-black); }
+.atx-floating-contacts .atx-float-quote { background: var(--atx-float-orange); }
+.atx-floating-contacts .atx-float-whatsapp { background: var(--atx-float-whatsapp); }
+.atx-floating-contacts .atx-contact-action:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -5px;
+  box-shadow: 0 0 0 2px #101820;
+}
+.atx-floating-contacts .atx-contact-action[aria-disabled="true"] {
+  opacity: .65;
+  cursor: not-allowed;
+}
+.atx-mobile-contact { display: none; }
+
+/* Desktop floating controls */
+@media (min-width: 769px) {
+  .atx-desktop-contact {
+    position: fixed;
+    right: 14px;
+    bottom: 108px;
+    z-index: 1050;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .atx-desktop-contact .atx-contact-action {
+    justify-content: flex-start;
+    overflow: hidden;
+    gap: 13px;
+    padding: 0 14px;
+    width: 53px;
+    height: 53px;
+    border-radius: 15px;
+    font-size: 13px;
+    white-space: nowrap;
+    box-shadow: 0 7px 19px #0003;
+  }
+  .atx-desktop-contact .atx-float-call {
+    border-left: 3px solid var(--atx-float-orange);
+    padding-left: 11px;
+  }
+  .atx-desktop-contact .atx-contact-action span {
+    opacity: 0;
+    transform: translateX(-7px);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .atx-desktop-contact .atx-contact-action:hover,
+  .atx-desktop-contact .atx-contact-action:focus-visible {
+    width: 150px;
+    box-shadow: 0 9px 24px #0004;
+  }
+  .atx-desktop-contact .atx-contact-action:hover span,
+  .atx-desktop-contact .atx-contact-action:focus-visible span {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mobile bottom bar */
+@media (max-width: 768px) {
+  .atx-desktop-contact { display: none; }
+  .atx-mobile-contact {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+    z-index: 1050;
+    background: var(--atx-float-black);
+    box-shadow: 0 -5px 18px #0003;
+  }
+  .atx-mobile-contact .atx-contact-action {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 60px;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 11px;
+    line-height: 1.1;
+  }
+  .atx-mobile-contact .atx-contact-action svg { width: 22px; height: 22px; }
+  .atx-mobile-contact .atx-contact-action:active { filter: brightness(1.12); transform: scale(.98); }
+  body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+  #contact { scroll-margin-top: 85px; }
+}
+
+/* Reduced motion and existing photo lightbox */
+@media (prefers-reduced-motion: reduce) {
+  .atx-floating-contacts .atx-contact-action,
+  .atx-floating-contacts .atx-contact-action span { transition: none !important; }
+}
+body:has(.atx-lightbox[open]) .atx-floating-contacts { visibility: hidden; pointer-events: none; }
+/* END AUTOTRIX FLOATING CONTACT BUTTONS */
