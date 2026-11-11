@@ -426,3 +426,31 @@ window.matchMedia('(min-width: 1101px)').addEventListener('change', closeMenu);
   }, { threshold: .13, rootMargin: '0px 0px -18px 0px' });
   features.forEach(el => observer.observe(el));
 })();
+
+/* AUTOTRIX FLOATING CONTACT BUTTONS: CONFIGURE VERIFIED WHATSAPP HERE */
+(() => {
+  // Digits only with country code. Example: '1406XXXXXXX'. Do NOT assume the call number supports WhatsApp.
+  const WHATSAPP_NUMBER = '';
+  const blocks = document.querySelectorAll('.atx-floating-contacts');
+  if (!blocks.length) return;
+  blocks.forEach((block, index) => { if (index > 0) block.remove(); });
+  const digits = WHATSAPP_NUMBER.replace(/\D/g, '');
+  const isValid = /^[1-9]\d{7,14}$/.test(digits);
+  document.querySelectorAll('.atx-floating-contacts .atx-float-whatsapp').forEach(link => {
+    if (!isValid) {
+      link.removeAttribute('href');
+      link.setAttribute('aria-disabled', 'true');
+      link.setAttribute('aria-label', 'WhatsApp number not set');
+      link.setAttribute('title', 'WhatsApp number not set');
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+    } else {
+      link.href = `https://wa.me/${digits}`;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.removeAttribute('aria-disabled');
+      link.setAttribute('aria-label', 'Chat with Autotrix on WhatsApp');
+      link.removeAttribute('title');
+    }
+  });
+})();
