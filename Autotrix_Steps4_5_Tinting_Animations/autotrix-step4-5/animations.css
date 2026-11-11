@@ -1,0 +1,26 @@
+/* STEP 4 + 5: Scroll reveal. Works without JS too (content stays visible). */
+@media (prefers-reduced-motion: no-preference) {
+  .atx-enhanced .atx-reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  .atx-enhanced .atx-reveal {
+    transition: opacity .72s ease, transform .72s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--atx-delay, 0ms);
+  }
+  .atx-enhanced .atx-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atx-tint-card, .atx-tint-card-image, .atx-tint-card-button, .atx-benefit-card, .atx-benefit-icon { transition: none !important; }
+}
+
+/* Keep hover lift working after the scroll animation finishes. */
+@media (prefers-reduced-motion: no-preference) {
+  .atx-enhanced .atx-tint-card.is-visible:hover,
+  .atx-enhanced .atx-tint-card.is-visible:focus-within { transform: translateY(-5px); }
+  .atx-enhanced .atx-benefit-card.is-visible:hover,
+  .atx-enhanced .atx-benefit-card.is-visible:focus-within { transform: translateY(-6px); }
+}
