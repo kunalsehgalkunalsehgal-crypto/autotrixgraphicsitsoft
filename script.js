@@ -430,7 +430,7 @@ window.matchMedia('(min-width: 1101px)').addEventListener('change', closeMenu);
 /* AUTOTRIX FLOATING CONTACT BUTTONS: CONFIGURE VERIFIED WHATSAPP HERE */
 (() => {
   // Digits only with country code. Example: '1406XXXXXXX'. Do NOT assume the call number supports WhatsApp.
-  const WHATSAPP_NUMBER = '';
+  const WHATSAPP_NUMBER = '14064437881';
   const blocks = document.querySelectorAll('.atx-floating-contacts');
   if (!blocks.length) return;
   blocks.forEach((block, index) => { if (index > 0) block.remove(); });
